@@ -55,13 +55,14 @@ int get_number(const std::string& prompt, std::string_view color)
    print(prompt, color);
    int number = 0;
 
-   while (!(std::cin >> number))
+   while (!(std::cin >> std::ws >> number))
    {
       std::cin.clear();
       std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-      print("Invalid input. Please tru again > "s, get_red());
+      print("Invalid input. Please try again > "s, get_red());
    }
-   get_input();
+   std::string enter;
+   std::getline(std::cin, enter);
    return number;
 }
 
